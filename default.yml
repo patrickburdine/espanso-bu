@@ -1,0 +1,62 @@
+# espanso configuration file
+
+# This is the default configuration file, change it as you like it
+# You can refer to the official documentation:
+# https://espanso.org/docs/
+
+# Matches are the substitution rules, when you type the "trigger" string
+# it gets replaced by the "replace" string.
+matches:
+  # Simple text replacement
+  - trigger: ":espanso"
+    replace: "Hi there!"
+
+  # Dates
+  - trigger: ":date"
+    replace: "{{mydate}}"
+    vars:
+      - name: mydate
+        type: date
+        params:
+          format: "%m/%d/%Y"
+
+  # Breadcrumb
+  - trigger: ":bc"
+    word: true
+    replace: "{{output}}"
+    vars:
+      - name: output
+        type: shell
+        params:
+          cmd: "echo `date -v -1d \"+[[%Y-%m-%d-%a|<< Yesterday]]\"`' | '`date -v +1d \"+[[%Y-%m-%d-%a|Tomorrow >>]]\"`"
+
+  # Meeting
+  - trigger: ":meet"
+    word: true
+    replace: |
+             ## 0000 Meeting
+             - Tags:
+             Meeting Link:
+             Attendees:
+             Tasks:
+             Notes:
+
+  # Next Week
+  - triggers: [ ":>w", ":>mon" ]
+    word: true
+    replace: "{{output}}"
+    vars:
+      - name: output
+        type: shell
+        params:
+          cmd: "echo `date -v +Mon \"+[[%Y-%m-%d]]\"`"
+
+  # Quick People Notes
+  - trigger: ":people"
+    word: true
+    replace: |
+             Title: 
+             Team: 
+             Location:
+             Expertise:
+             Other:
