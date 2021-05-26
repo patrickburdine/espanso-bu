@@ -75,7 +75,7 @@ matches:
   # Edit espanso.yml
   - trigger: ":yml"
     word: true
-    replace: "vi /Users/pba2/Library/Preferences/espanso/default.yml"
+    replace: "vi [PATH TO YML]"
 
   # add php for assertSee
   - trigger: ":as"
