@@ -35,28 +35,48 @@ matches:
     word: true
     replace: |
              ## 0000 Meeting
-             - Tags:
-             Meeting Link:
-             Attendees:
-             Tasks:
-             Notes:
+             - Tags/Index: 
+             Meeting Link: 
+             Attendees: 
+             Tasks: 
+             Notes: 
 
   # Next Week
-  - triggers: [ ":>w", ":>mon" ]
+  - triggers: [ ":>nw", ":>mon" ]
     word: true
     replace: "{{output}}"
     vars:
       - name: output
         type: shell
         params:
-          cmd: "echo `date -v +Mon \"+[[%Y-%m-%d]]\"`"
+          cmd: "echo →  `date -v +Mon \"+[[%Y-%m-%d-%a]]\"`"
 
   # Quick People Notes
   - trigger: ":people"
     word: true
     replace: |
-             Title: 
-             Team: 
-             Location:
-             Expertise:
-             Other:
+             **Title:** 
+             **Team:**
+             **Location:**
+             **Expertise:**
+             **LinkedIn:**
+             **Other:**
+
+  # Quick People Notes
+  - trigger: ":sdet"
+    word: true
+    replace: "As SDET I want to $|$ so that ..."
+
+  # Migrating Arrow for tasks
+  - trigger: ":->"
+    word: true
+    replace: "→" 
+
+  # Edit espanso.yml
+  - trigger: ":yml"
+    word: true
+    replace: "vi /Users/pba2/Library/Preferences/espanso/default.yml"
+
+  # add php for assertSee
+  - trigger: ":as"
+    replace: "->assertSee('$|$')"
