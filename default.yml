@@ -35,12 +35,11 @@ matches:
     word: true
     replace: |
              ## 0000 Meeting
-             - Tags/Index: 
-             Meeting Link: 
-             Attendees: 
-             Tasks: 
-             Notes: 
-
+             - Tags/Index:
+             Meeting Link:
+             Attendees:
+             Tasks:
+             Notes:
   # Next Week
   - triggers: [ ":>nw", ":>mon" ]
     word: true
@@ -55,28 +54,85 @@ matches:
   - trigger: ":people"
     word: true
     replace: |
-             **Title:** 
+             **Title:**
              **Team:**
              **Location:**
              **Expertise:**
              **LinkedIn:**
              **Other:**
 
-  # Quick People Notes
-  - trigger: ":sdet"
+  # Steps
+  - trigger: ":steps"
     word: true
-    replace: "As SDET I want to $|$ so that ..."
+    replace: "Steps to reproduce: "
 
-  # Migrating Arrow for tasks
-  - trigger: ":->"
+  # Android
+  - trigger: ":android"
     word: true
-    replace: "→" 
+    replace: "#android (not started)"
 
-  # Edit espanso.yml
-  - trigger: ":yml"
+  - trigger: ":androidi"
     word: true
-    replace: "vi [PATH TO YML]"
+    replace: "#android (in progress 🔄)"
 
-  # add php for assertSee
-  - trigger: ":as"
-    replace: "->assertSee('$|$')"
+  - trigger: ":androidc"
+    word: true
+    replace: "#android (complete ✅)"
+
+  # iOS
+  - trigger: ":ios"
+    word: true
+    replace: "#iOS (not started)"
+
+  - trigger: ":iosi"
+    word: true
+    replace: "#iOS (in progress 🔄)"
+
+  - trigger: ":iosc"
+    word: true
+    replace: "#iOS (complete ✅)"
+
+  # Tool for daily notes
+  - trigger: ":tool"
+    word: true
+    replace: "#tool (not started)"
+
+  # Web for daily notes
+  - trigger: ":web"
+    word: true
+    replace: "#web (not started)"
+
+  # patrick.burdine email
+  - trigger: ":pb"
+    word: true
+    replace: "patrick.burdine@gmail.com"
+
+  # insert email for testing
+  - trigger: ":ha"
+    word: true
+    replace: "patrick+{{addtime}}$|$@hallow.app"
+    vars:
+      - name: addtime
+        type: date
+        params:
+          format: "%m%d%y"
+ 
+  # insert written vs. expected for Text on Screen
+  - trigger: ":writ"
+    word: true
+    replace: "written: $|$ actual: "
+
+ # insert email for testing
+  - trigger: ":magic"
+    word: true
+    replace: "https://hallow.com/magic/"
+  
+ # insert email for testing
+  - trigger: ":bb"
+    word: true
+    replace: "[Security BB] "
+
+# run command to fix audio for MacOS Tahoe
+  - trigger: ":fa"
+    word: true
+    replace: "sudo killall coreaudiod"
